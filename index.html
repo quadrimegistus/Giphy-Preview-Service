@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">    
     <!-- Reset CSS -->
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/reset.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- Style CSS -->
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <title>H6 - API Navigation</title>
@@ -18,9 +18,11 @@
 <body class="c-container / t--dark">
     <div class='container t-menu t-border'>
         <div class='jumbotron t-menu__item'>
-            <h1>Video Game GIF Display</h1><br>
-            <h2>Pronounced Like Jiffy Lube?</h2><br>
-            <h3>The World May Never Know Peace From These Rustled Jimmies</h3>  
+            <h1>Video Game GIF Preview Display</h1><br>
+            <h2>Preview Video Games That Interest You In GIF Form</h2><br>
+            <h3>Pronounced Like Jiff Peanut Butter?</h3><br>
+            <h4>Choosy Moms Don't Choose Jiff</h4><br>
+            <h5>The World May Never Know Peace From These Rustled Jimmies</h5>
         </div>
     </div>
     <div class='container t-menu t-border'><br>
@@ -34,23 +36,23 @@
     <div class='container t-menu t-border'><br>
         <form id='search-form'>
             <label for="search-input">Game You Want To Search: </label>
-            <input type="text" id='search-input' placeholder="Type Name Here">
+            <input type="text" id='search-input' placeholder="Type Game Name Here">
             <label for="number-input">Total GIF's You Want: </label>
-            <input type="number" id='number-input' placeholder="Default Is 25"><br><br>
+            <input type="number" id='number-input' placeholder="Type A Number Here"><br><br>
             <!-- Button Click Triggers New Game To Be Added -->
-            <input type="submit" id="add-game" value="Search For Game" class="btn btn-primary">
+            <input type="submit" id="add-game" value="Add New Game" class="btn btn-primary">
             <!-- Button Click Triggers Removal Of Last Game Added -->
             <input type="submit" id="remove-game" value="Remove Last Button" class="btn btn-warning">
             <!-- Button Click Removes Latest GIF Results Only-->
-            <input type="submit" id="remove-gif" value="Clear GIFs Below" class="btn btn-danger">
+            <input type="submit" id="remove-gifs" value="Clear GIFs Below" class="btn btn-danger">
             <br>
         </form><br>
-        <h4>Click The GIF's To Animate</h4><br>
+        <h4>Click The GIF's Below To Animate Them</h4><br>
     </div>
         <!--Game GIFs Will Display Here-->
-        <div class="container games-view t-menu t-border"></div>
+        <div class="container games-view t-menu t-border"><div id='loading'></div></div>
     
 <!-- JavaScript -->
-<script type="text/javascript" src="assets/js.js"></script> 
+<script type="text/javascript" src="assets/javascript/js.js"></script> 
 </body>
 </html>
