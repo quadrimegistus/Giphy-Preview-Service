@@ -1,62 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <!-- Reset CSS -->
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css">
+    <link href="assets/css/reset.css" media="screen" rel="stylesheet" type="text/css">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Style CSS -->
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+    <link href="assets/css/style.css" media="screen" rel="stylesheet" type="text/css">
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <title>H6 - API Navigation</title>
+	<script src="https://code.jquery.com/jquery-3.3.1.js">
+	</script><!-- Bootstrap Toggle Buttons -->
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <!-- Document Title -->
+	<title>H6 - API Navigation</title>
 </head>
-
-<body class="c-container / t--dark">
-    <div class='container t-menu t-border'>
-        <div class='jumbotron t-menu__item'>
-            <h1>Video Game GIF Preview Display</h1><br>
-            <h2>Preview Video Games That Interest You In GIF Form</h2><br>
-            <h3>Pronounced Like Jiff Peanut Butter?</h3><br>
-            <h4>Choosy Moms Don't Choose Jiff</h4><br>
-            <h5>The World May Never Know Peace From These Rustled Jimmies</h5>
-        </div>
-    </div>
-    <div class='container t-menu t-border'><br>
-    <button class="o-menu__item / js-change-theme / btn btn-primary"></button><br><br>
+<body class="c-container / t--dark"><br>
+	<div class='container t-menu t-border'>
+		<div class='panel t-menu__item'>
+			<h1>Video Game GIF Preview Display</h1><br>
+			<h2>Preview Video Games That Interest You In GIF Form</h2><br>
+			<h3>Pronounced Like Jiff Peanut Butter?</h3><br>
+			<h4>Choosy Moms Don't Choose Jiff</h4><br>
+			<h5>The World May Never Know Peace From These Rustled Jimmies</h5>
+		</div>
+	</div><!-- Option Container -->
+	<div class='container t-menu t-border'><br>
+		<h5>Clickable Options</h5>
+		<div class="btn-group-toggle" data-toggle="buttons">
+			<label class="btn btn-primary o-menu__item js-change-theme t-border">
+                <input autocomplete="off" checked type="checkbox"></label> 
+            <label class="btn btn-success o-menu__item t-border gifsaver">
+                <input autocomplete="off" checked type="checkbox"></label>
+		</div><br>
+		<form id='search-form' name="search-form">
+			<div class='row'>
+				<div class="input-group mb-12 col-md-6">
+					<div class="input-group-prepend">
+						<!-- Button Click Triggers New Game To Be Added -->
+						<button class="o-menu__item btn btn-primary t-border" id="add-game" type="button">Add New Game</button>
+					</div><input aria-describedby="button-addon1" aria-label="Example text with button addon" class="form-control t-border" id='search-input' placeholder="Type Game Name Here" type="text">
+				</div>
+				<div class="btn-group btn-group-toggle col-md-6" data-toggle="buttons">
+					<label class="o-menu__item btn btn-secondary t-border active">
+                        <input autocomplete="off" checked id="option1" name="options" type="radio" value='10'> Show Me 10 GIFs</label> 
+                    <label class="o-menu__item btn btn-secondary t-border">
+                        <input autocomplete="off" id="option2" name="options" type="radio" value='25'> Show Me 25 GIFs</label> 
+                    <label class="o-menu__item btn btn-secondary t-border">
+                        <input autocomplete="off" id="option3" name="options" type="radio" value='50'> Show Me 50 GIFs</label>
+				</div>
+			</div><br>
+			<!-- Button Click Triggers Removal Of Last Button Added -->
+             <input class="btn btn-warning t-border" id="remove-game" type="submit" value="Remove Last Button">
+             <!-- Button Click Removes Latest GIF Results Only-->
+			 <input class="btn btn-danger t-border" id="remove-gifs" type="submit" value="Clear All GIFs">
+		</form><br>
     </div>
     <!-- Rendered Buttons To Be Placed Here -->
-    <div class='container t-menu t-border'><br>
-    <div class='panel panel-default t-menu buttonContainer'></div><br>
+	<div class='container t-menu t-border'><br>
+		<h5>Click The Game Buttons To Load GIFs</h5><br>
+		<div class='panel panel-default t-menu buttonContainer'></div><br>
+		<h4>Click The GIF's To Play The Animation</h4><br>
+	</div><br>
+	<!--Game GIFs Will Display Here-->
+	<div class='container gifcontainer'><br>
+		<div class='games-view row'>
+			<div class='loading col-md-12'><img src='assets/images/loading2.gif'></div>
+		</div>
     </div>
-    <!-- Primary Page Container -->
-    <div class='container t-menu t-border'><br>
-        <form id='search-form'>
-            <label for="search-input">Game You Want To Search: </label>
-            <input type="text" id='search-input' placeholder="Type Game Name Here">
-            <label for="number-input">Total GIF's You Want: </label>
-            <input type="number" id='number-input' placeholder="Type A Number Here"><br><br>
-            <!-- Button Click Triggers New Game To Be Added -->
-            <input type="submit" id="add-game" value="Add New Game" class="btn btn-primary">
-            <!-- Button Click Triggers Removal Of Last Game Added -->
-            <input type="submit" id="remove-game" value="Remove Last Button" class="btn btn-warning">
-            <!-- Button Click Removes Latest GIF Results Only-->
-            <input type="submit" id="remove-gifs" value="Clear GIFs Below" class="btn btn-danger">
-            <br>
-        </form><br>
-        <h4>Click The GIF's Below To Animate Them</h4><br>
-    </div>
-        <!--Game GIFs Will Display Here-->
-        <div class="container games-view t-menu t-border">
-            <div id='loading'>
-                <img src='assets/images/loading2.gif'>
-            </div>
-        </div>
-    
-<!-- JavaScript -->
-<script type="text/javascript" src="assets/javascript/js.js"></script> 
+    <!-- JavaScript -->
+	<script src="assets/javascript/js.js" type="text/javascript"></script>
 </body>
 </html>
