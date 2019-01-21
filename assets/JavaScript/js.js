@@ -4,69 +4,100 @@ $(document).ready(function(){
     var cors = 'https://cors-anywhere.herokuapp.com/';
 
     function renderButtons() {
-        $(".buttonContainer").empty();
+        $('.buttonContainer').empty();
         for (var i = 0; i < gamesList.length; i++) {
-            var a = $("<button>");
+            var a = $('<button>');
             a.addClass('btn btn-primary');
-            a.addClass("action");
-            a.attr("data-name", gamesList[i]);
+            a.addClass('action');
+            a.attr('data-name', gamesList[i]);
             a.text(gamesList[i]);
-            $(".buttonContainer").append(a);
+            $('.buttonContainer').append(a);
         }}
     renderButtons();
     
+    $(document).on('click', '.action', function gameSearchOnClick() {
+        $('#loading').show();
+        event.preventDefault();
+        var game = $(this).attr('data-name');
+        var numInput = $('#number-input').val().trim();
+        var limit = '&limit='+numInput;
+        var queryURL = cors+'https://api.giphy.com/v1/gifs/search?q='+game+apiKey+limit;
+        console.log('This is the URL passed: '+queryURL);
+        $.ajax({
+            url: queryURL,
+            method: 'GET'
+        }).done(function(response){
+            $('.games-view').html('');
+            var results = response.data;
+            if (results == ''){
+                $('.games-view').html("There isn't a gif for this search. Womp womp. :(");
+              }
+            for (var i = 0; i < results.length; i++) {
+                var gameDiv = $('<div>');
+                gameDiv.addClass('gameDiv');
+                gameDiv.addClass('col');
+                var gameGifRating = results[i].rating.toUpperCase();
+                var gameTitle = game.toUpperCase();
+                var pOne = $('<p>').text('GIF RATING: ' + gameGifRating + ' TITLE: ' + gameTitle);
+                gameDiv.append(pOne);                                
+                var gameImage = $('<img>');
+                var stillImgURL = results[i].images.fixed_height_small_still.url;
+                var animatedImgURL = results[i].images.fixed_height_small.url;
+                gameImage.attr('src', stillImgURL);
+                gameImage.attr('data-still', stillImgURL);
+                gameImage.attr('data-animate', animatedImgURL);
+                gameImage.attr('data-state', 'still');
+                gameImage.addClass('game-image');
+                gameDiv.append(gameImage);
+                $('.games-view').append(gameDiv);
+        }});});
+    
     $(document).on('click', '#add-game', function gameSearchOnInput() {
-        $("#loading").show();
+        $('#loading').show();
         var userInput = $('#search-input').val().trim();
         var numInput = $('#number-input').val().trim();
         var limit = '&limit='+numInput;
         var game = userInput;
         var queryURL = cors+'https://api.giphy.com/v1/gifs/search?q='+game+apiKey+limit;
-        console.log('This is the game searched: '+game);
-        $('.games-view').html('');
         event.preventDefault();
-        if (userInput == ""){
+        if (userInput == ''){
             return false;}
         gamesList.push(userInput);
-        console.log('This is the userInput passed to API search: '+userInput);
         renderButtons(userInput);
-        console.log('This is the new button List: '+gamesList);
-        $('#search-input').val("");
-        $('#number-input').val("");
+        $('#search-input').val('');
+        $('#number-input').val('');
+        console.log('This is the URL passed: '+queryURL);
         $.ajax({
             url: queryURL,
-            method: "GET"
+            method: 'GET'
         }).done(function(response){
             $('.games-view').html('');
-            console.log('This was the queryURL sent: '+queryURL);
             var results = response.data;
-            console.log(results);
-            if (results == ""){
-                $(".games-view").text("<h1>There isn't a gif for this search. Womp womp. :(</h1>");
+            if (results == ''){
+                $('.games-view').html("There isn't a gif for this search. Womp womp. :(");
               }
             for (var i = 0; i < results.length; i++) { 
-                    var gameDiv = $("<div>");
+                    var gameDiv = $('<div>');
                     gameDiv.addClass('gameDiv');
                     gameDiv.addClass('col');
                     var gameGifRating = results[i].rating.toUpperCase();
-                    var gifTitle = results[i].title.toUpperCase(); 
-                    var pOne = $("<p>").text("GIF RATING: " + gameGifRating + " GIF TITLE: " + gifTitle);
+                    var gameTitle = game.toUpperCase();
+                    var pOne = $('<p>').text('GIF RATING: ' + gameGifRating + ' TITLE: ' + gameTitle);
                     gameDiv.append(pOne);                                
-                    var gameImage = $("<img>");
+                    var gameImage = $('<img>');
                     var stillImgURL = results[i].images.fixed_height_small_still.url;
                     var animatedImgURL = results[i].images.fixed_height_small.url;
                     gameImage.attr('src', stillImgURL);
-                    gameImage.attr("data-still", stillImgURL);
-                    gameImage.attr("data-animate", animatedImgURL);
-                    gameImage.attr("data-state", "still");
-                    gameImage.addClass("game-image");
+                    gameImage.attr('data-still', stillImgURL);
+                    gameImage.attr('data-animate', animatedImgURL);
+                    gameImage.attr('data-state', 'still');
+                    gameImage.addClass('game-image');
                     gameDiv.append(gameImage);
-                    $(".games-view").append(gameDiv);
+                    $('.games-view').append(gameDiv);
         }});});
 
     $(document).on('click', '#remove-game', function clearLastButton (event){
         event.preventDefault();
-        $('.games-view').html('');
         $('.buttonContainer').children().last().remove();
         gamesList.pop();
         });
@@ -75,47 +106,8 @@ $(document).ready(function(){
         event.preventDefault();
         $('.games-view').html('');
         });
-    
-    $(document).on("click", ".action", function gameSearchOnClick() {
-        $("#loading").show();
-        event.preventDefault();
-        var game = $(this).attr("data-name");
-        var numInput = $('#number-input').val().trim();
-        var limit = '&limit='+numInput;
-        var queryURL = cors+'https://api.giphy.com/v1/gifs/search?q='+game+apiKey+limit;
-        console.log('This is the game searched: '+game);
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).done(function(response){
-            $('.games-view').html('');
-            console.log('This was the queryURL sent: '+queryURL);
-            var results = response.data;
-            console.log(results);
-            if (results == ""){
-                $(".games-view").text("There isn't a gif for this search. Womp womp. :(");
-              }
-            for (var i = 0; i < results.length; i++) { 
-                    var gameDiv = $("<div>");
-                    gameDiv.addClass('gameDiv');
-                    gameDiv.addClass('col');
-                    var gameGifRating = results[i].rating.toUpperCase();
-                    var gifTitle = results[i].title.toUpperCase(); 
-                    var pOne = $("<p>").text("GIF RATING: " + gameGifRating + " GIF TITLE: " + gifTitle);
-                    gameDiv.append(pOne);                                
-                    var gameImage = $("<img>");
-                    var stillImgURL = results[i].images.fixed_height_small_still.url;
-                    var animatedImgURL = results[i].images.fixed_height_small.url;
-                    gameImage.attr('src', stillImgURL);
-                    gameImage.attr("data-still", stillImgURL);
-                    gameImage.attr("data-animate", animatedImgURL);
-                    gameImage.attr("data-state", "still");
-                    gameImage.addClass("game-image");
-                    gameDiv.append(gameImage);
-                    $(".games-view").append(gameDiv);
-        }});});
 
-    $(document).on("click", ".game-image", function changeGIFState (){
+    $(document).on('click', '.game-image', function changeGIFState (){
         var state = $(this).attr('data-state');
         if ( state == 'still'){
             $(this).attr('src', $(this).data('animate'));
@@ -124,6 +116,7 @@ $(document).ready(function(){
             $(this).attr('src', $(this).data('still'));
             $(this).attr('data-state', 'still');
         }});
+
     $(document).on('click', '.js-change-theme', function changeTheme (){
         var body = $(document.body);
         if (body.hasClass('t--dark')) {
@@ -138,5 +131,7 @@ $(document).ready(function(){
         } else {
             $('.js-change-theme').text('Switch to a Lighter Display');
         }});
+        
     $('.js-change-theme').text('Switch to a Lighter Display')
+    $('#loading').hide();
 });
