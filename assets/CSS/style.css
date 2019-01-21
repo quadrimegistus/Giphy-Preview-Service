@@ -68,3 +68,8 @@
     transition-duration: .3s;
     transition-property: *;
 }
+
+.gameDiv {
+    width:auto;
+    margin:auto;
+}
