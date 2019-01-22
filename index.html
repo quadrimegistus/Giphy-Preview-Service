@@ -21,19 +21,25 @@
 <body class="c-container / t--dark"><br>
 	<div class='container t-menu t-border'>
 		<div class='panel t-menu__item'>
-			<h1>Video Game GIF Preview Display</h1><br>
+			<h1>Video Game GIF Preview</h1><br>
 			<h2>Preview Video Games That Interest You In GIF Form</h2><br>
 			<h3>Pronounced Like Jiff Peanut Butter?</h3><br>
 			<h4>Choosy Moms Don't Choose Jiff</h4><br>
 			<h5>The World May Never Know Peace From These Rustled Jimmies</h5>
-		</div>
-	</div><!-- Option Container -->
+		</div><br>
+	</div>
+	<!-- Favorited GIF Container -->
+	<div class='container t-menu t-border favgifs'>
+	</div>
+	<!-- Option Container -->
 	<div class='container t-menu t-border'><br>
 		<h5>Clickable Options</h5>
 		<div class="btn-group-toggle" data-toggle="buttons">
-			<label class="btn btn-primary o-menu__item js-change-theme t-border">
+			<label class="btn btn-light o-menu__item js-change-theme t-border">
                 <input autocomplete="off" checked type="checkbox"></label> 
-            <label class="btn btn-success o-menu__item t-border gifsaver">
+            <label class="btn o-menu__item t-border gifsaver btn-success">
+				<input autocomplete="off" checked type="checkbox"></label>
+			<label class="btn btn-info o-menu__item t-border giffavoriter off">
                 <input autocomplete="off" checked type="checkbox"></label>
 		</div><br>
 		<form id='search-form' name="search-form">
@@ -41,16 +47,14 @@
 				<div class="input-group mb-12 col-md-6">
 					<div class="input-group-prepend">
 						<!-- Button Click Triggers New Game To Be Added -->
-						<button class="o-menu__item btn btn-primary t-border" id="add-game" type="button">Add New Game</button>
+						<button class="o-menu__item btn btn-primary t-border" id="add-game" type="button">Add New Game Button</button>
 					</div><input aria-describedby="button-addon1" aria-label="Example text with button addon" class="form-control t-border" id='search-input' placeholder="Type Game Name Here" type="text">
 				</div>
-				<div class="btn-group btn-group-toggle col-md-6" data-toggle="buttons">
-					<label class="o-menu__item btn btn-secondary t-border active">
-                        <input autocomplete="off" checked id="option1" name="options" type="radio" value='10'> Show Me 10 GIFs</label> 
-                    <label class="o-menu__item btn btn-secondary t-border">
-                        <input autocomplete="off" id="option2" name="options" type="radio" value='25'> Show Me 25 GIFs</label> 
-                    <label class="o-menu__item btn btn-secondary t-border">
-                        <input autocomplete="off" id="option3" name="options" type="radio" value='50'> Show Me 50 GIFs</label>
+				<div class="input-group mb-12 col-md-6">
+					<div class="input-group-prepend">
+						<!-- Button Click Triggers New Game To Be Added -->
+						<button class="o-menu__item btn btn-secondary t-border" id="add-game" type="button">Total GIFs You Want</button>
+					</div><input aria-describedby="button-addon1" aria-label="Example text with button addon" class="form-control t-border" id='number-input' placeholder="Type A Number Here" type="text">
 				</div>
 			</div><br>
 			<!-- Button Click Triggers Removal Of Last Button Added -->
@@ -64,11 +68,11 @@
 		<h5>Click The Game Buttons To Load GIFs</h5><br>
 		<div class='panel panel-default t-menu buttonContainer'></div><br>
 		<h4>Click The GIF's To Play The Animation</h4><br>
-	</div><br>
+	</div>
 	<!--Game GIFs Will Display Here-->
 	<div class='container gifcontainer'><br>
-		<div class='games-view row'>
-			<div class='loading col-md-12'><img src='assets/images/loading2.gif'></div>
+		<div class='loading col-md-12'><img src='assets/images/loading2.gif'></div>
+		<div class='games-view row'>	
 		</div>
     </div>
     <!-- JavaScript -->

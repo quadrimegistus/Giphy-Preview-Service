@@ -5,6 +5,11 @@
  .action, .fav, .game-image {
      margin:2px;
  }
+ .form-control{
+     margin:auto;
+     height:auto;
+    
+ }
 
  .game-image {
      width:250px;
