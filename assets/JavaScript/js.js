@@ -1,9 +1,11 @@
 // TODO: Add Clear Favorite Gifs Button in container
-// TODO: Make Radio buttons for limit search work.
 // TODO: Consolidate search on type and search on click functions into single function.
 // TODO: Clean code, consolidate items for cleaner appearance and less total lines of code.
 // TODO: Randomize order in which gifs are displayed.
 // TODO: Remedy issue when pressing enter while #search-input is blank removes buttons.
+// TODO: Fix favorite button not grabbing the correct image.
+// TODO: Fix button creation populating with theme inconsistent with page theme.
+// TODO: Fix download button not downloading the correct image. -Disabled
 
 $(document).ready(function(){
     var gifSaver = $('.gifsaver')
@@ -13,16 +15,14 @@ $(document).ready(function(){
 
     function renderButtons() {
         $('.buttonContainer').empty();
-        for (var i = 0; i < gamesList.length; i++) {$('<button>', {type:'button', class:'btn btn-primary t-border action', 'data-name':gamesList[i], text:gamesList[i]}).appendTo('.buttonContainer');}}
+        for (var i = 0; i < gamesList.length; i++) {$('<button>', {type:'button', class:'btn btn-light t-border action o-menu__item z', 'data-name':gamesList[i], text:gamesList[i]}).appendTo('.buttonContainer');}}
     renderButtons();
 
     $(document).on('click', '.action', function gameSearchOnClick() {
         $('.loading').show();
         var gameSearched = $(this).attr('data-name');
-        var numInput = $('#number-input').val().trim(); 
-        if (numInput == ''){var numInput = 10;}
-        var limit = '&limit='+numInput;
-        var queryURL = cors+'https://api.giphy.com/v1/gifs/search?q='+gameSearched+apiKey+limit;
+        var numInput = $('#number-input').val().trim(); if (numInput == ''){var numInput = 10;};
+        var queryURL = cors+'https://api.giphy.com/v1/gifs/search?q='+gameSearched+apiKey+'&limit='+numInput;
         $.get(queryURL).done(function(response){
             $('.gifcontainer').addClass('t-border');
             $('.loading').hide();
@@ -43,10 +43,8 @@ $(document).ready(function(){
     $(document).on('click', '#add-game', function gameSearchOnInput() {
         $('.loading').show();
         var gameSearched = $('#search-input').val().trim();
-        var numInput = $('#number-input').val().trim(); 
-        if (numInput == ''){var numInput = 10;} 
-        var limit = '&limit='+numInput;
-        var queryURL = cors+'https://api.giphy.com/v1/gifs/search?q='+gameSearched+apiKey+limit;
+        var numInput = $('#number-input').val().trim(); if (numInput == ''){var numInput = 10;}; 
+        var queryURL = cors+'https://api.giphy.com/v1/gifs/search?q='+gameSearched+apiKey+'&limit='+numInput;
         if (gameSearched == ''){
             $("<div class='col-md-12 t-border'>").text('You need to type a game name to search fam.').prependTo('.games-view');
             $('.loading').hide();
@@ -91,18 +89,18 @@ $(document).ready(function(){
 
     $(document).on('click', '.js-change-theme', function changeTheme (){
         var body = $(document.body);
-        var theme = $('.js-change-theme');
+        var btns = $('.z');
         if (body.hasClass('t--dark')) {
             body.removeClass('t--dark');
-            theme.removeClass('btn-light')
+            btns.removeClass('btn-light')
             body.addClass('t--light');
-            theme.addClass('btn-dark');
+            btns.addClass('btn-dark');
             $('.js-change-theme').text('Switch to a Darker Display')
         } else {
             body.removeClass('t--light');
             body.addClass('t--dark');
-            theme.addClass('btn-light');
-            theme.removeClass('btn-dark');
+            btns.addClass('btn-light');
+            btns.removeClass('btn-dark');
             $('.js-change-theme').text('Switch to a Brighter Display')
         }});
 
@@ -110,11 +108,12 @@ $(document).ready(function(){
         if (gifSaver.hasClass('btn-success')) {
             gifSaver.removeClass('btn-success');
             gifSaver.addClass('btn-danger');
-            $(gifSaver).text('Set Search Results to Clear On New Search');
+            $(gifSaver).text('Set Search Results to Save On New Search');
         } else {
             gifSaver.addClass('btn-success');
             gifSaver.removeClass('btn-danger');
-            $(gifSaver).text('Set Search Results to Save On New Search');}});
+            $(gifSaver).text('Set Search Results to Clear On New Search');
+            }});
     
     $(document).on('click', '.giffavoriter', function showGifFavs(){
         var showFavs = $('.giffavoriter');

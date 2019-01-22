@@ -6,7 +6,8 @@
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <!-- Reset CSS -->
     <link href="assets/css/reset.css" media="screen" rel="stylesheet" type="text/css">
-    <!-- Bootstrap -->
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Style CSS -->
     <link href="assets/css/style.css" media="screen" rel="stylesheet" type="text/css">
@@ -35,11 +36,11 @@
 	<div class='container t-menu t-border'><br>
 		<h5>Clickable Options</h5>
 		<div class="btn-group-toggle" data-toggle="buttons">
-			<label class="btn btn-light o-menu__item js-change-theme t-border">
+			<label class="btn  btn-light o-menu__item js-change-theme t-border z">
                 <input autocomplete="off" checked type="checkbox"></label> 
-            <label class="btn o-menu__item t-border gifsaver btn-success">
+            <label class="btn  o-menu__item t-border gifsaver btn-success">
 				<input autocomplete="off" checked type="checkbox"></label>
-			<label class="btn btn-info o-menu__item t-border giffavoriter off">
+			<label class="btn  btn-light o-menu__item t-border giffavoriter off z">
                 <input autocomplete="off" checked type="checkbox"></label>
 		</div><br>
 		<form id='search-form' name="search-form">
@@ -53,14 +54,14 @@
 				<div class="input-group mb-12 col-md-6">
 					<div class="input-group-prepend">
 						<!-- Button Click Triggers New Game To Be Added -->
-						<button class="o-menu__item btn btn-secondary t-border" id="add-game" type="button">Total GIFs You Want</button>
+						<button class="o-menu__item btn btn-secondary t-border" id="" type="button">Total GIFs You Want</button>
 					</div><input aria-describedby="button-addon1" aria-label="Example text with button addon" class="form-control t-border" id='number-input' placeholder="Type A Number Here" type="text">
 				</div>
 			</div><br>
 			<!-- Button Click Triggers Removal Of Last Button Added -->
-             <input class="btn btn-warning t-border" id="remove-game" type="submit" value="Remove Last Button">
+             <input class="btn  btn-warning t-border" id="remove-game" type="submit" value="Remove Last Button">
              <!-- Button Click Removes Latest GIF Results Only-->
-			 <input class="btn btn-danger t-border" id="remove-gifs" type="submit" value="Clear All GIFs">
+			 <input class="btn  btn-danger t-border" id="remove-gifs" type="submit" value="Clear All GIFs">
 		</form><br>
     </div>
     <!-- Rendered Buttons To Be Placed Here -->
