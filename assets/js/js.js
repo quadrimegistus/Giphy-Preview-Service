@@ -7,17 +7,29 @@
 // TODO: Fix button creation populating with theme inconsistent with page theme.
 // TODO: Fix download button not downloading the correct image. -Disabled
 
+// Standard document ready function:
+
 $(document).ready(function(){
+    
+    // Establish global variables.
+    
     var gifSaver = $('.gifsaver')
     var gamesList = ['Dota 2', 'Starcraft', 'World of Warcraft', 'FF7'];
     var apiKey = '&api_key=DFXzSBLk00OK1piIKJ0vWamIJu5R6gcb';
     var cors = 'https://cors-anywhere.herokuapp.com/';
-
+    
+    // Button rendering function.
+    
     function renderButtons() {
         $('.buttonContainer').empty();
         for (var i = 0; i < gamesList.length; i++) {$('<button>', {type:'button', class:'btn btn-light t-border action o-menu__item z', 'data-name':gamesList[i], text:gamesList[i]}).appendTo('.buttonContainer');}}
+    
+    // Renders default buttons on page load.
+    
     renderButtons();
-
+    
+    // Function that populates Gifs based on click of existing button and input value in "#number-input" text box.
+    
     $(document).on('click', '.action', function gameSearchOnClick() {
         $('.loading').show();
         var gameSearched = $(this).attr('data-name');
@@ -39,7 +51,9 @@ $(document).ready(function(){
                 $('.games-view').prepend(gameDiv.prepend(gameImage, gifRatingBtn, favBtn, dlBtn));}
             $('.fav').on('click', function saveToFavs(){$('<img>', {class:'game-image t-border', src:gifInfo[0], 'data-still':gifInfo[0], 'data-animate':gifInfo[1], 'data-state':'still'}).appendTo('.favgifs')})
             });});
-
+    
+    // Function that populates Gifs based on click of "Add New Game Button", input value in "#search-input" text box and input value in "#number-input" text box.
+    
     $(document).on('click', '#add-game', function gameSearchOnInput() {
         $('.loading').show();
         var gameSearched = $('#search-input').val().trim();
@@ -68,15 +82,21 @@ $(document).ready(function(){
                 $('.games-view').prepend(gameDiv.prepend(gameImage, gifRatingBtn, favBtn, dlBtn));}
             $('.fav').on('click', function saveToFavs(){$('<img>', {class:'game-image t-border', src:gifInfo[0], 'data-still':gifInfo[0], 'data-animate':gifInfo[1], 'data-state':'still'}).appendTo('.favgifs')})
             });});
+    
+    // Click function that removes last button added.
 
     $('#remove-game').on('click', function clearLastButton (){
         $('.buttonContainer').children().last().remove();
         gamesList.pop();});
+
+    // Click function that clears all previously searched GIFs.
     
     $('#remove-gifs').on('click', function clearGIFsOnly (){
         $('.games-view').html('');
         $('.gifcontainer').removeClass('t-border');
-    });    
+    });
+    
+    // Click function that plays and pauses searched GIFs and favorited GIFs.
 
     $(document).on('click', '.game-image', function changeGIFState (){
         var state = $(this).attr('data-state');
@@ -86,6 +106,8 @@ $(document).ready(function(){
         }else{
             $(this).attr('src', $(this).data('still'));
             $(this).attr('data-state', 'still');}});
+
+    // Click function that changes theme between dark display, night display and certain button types.
 
     $(document).on('click', '.js-change-theme', function changeTheme (){
         var body = $(document.body);
@@ -103,6 +125,8 @@ $(document).ready(function(){
             btns.removeClass('btn-dark');
             $('.js-change-theme').text('Switch to a Brighter Display')
         }});
+    
+    // Click function that sets whether or not a new search will clear searched GIFs, or prepend existing GIFs.
 
     gifSaver.on('click', function changeSaveGif (){
         if (gifSaver.hasClass('btn-success')) {
@@ -114,6 +138,8 @@ $(document).ready(function(){
             gifSaver.removeClass('btn-danger');
             $(gifSaver).text('Set Search Results to Clear On New Search');
             }});
+    
+    // Click function that displays or hides the container which favorite GIFs are saved inside.
     
     $(document).on('click', '.giffavoriter', function showGifFavs(){
         var showFavs = $('.giffavoriter');
@@ -128,6 +154,8 @@ $(document).ready(function(){
             $('.favgifs').hide();}
             $('.giffavoriter').text('Show My Favorite GIFs');})
   
+    // Sets default texts and displays for certain items on page load.
+
     $('.js-change-theme').text('Switch to a Brighter Display'); $('.gifsaver').text('Set Search Results to Clear On New Search'); $('.giffavoriter').text('Show My Favorite GIFs')
     $('.loading').hide(); $('.favgifs').hide();
 });
