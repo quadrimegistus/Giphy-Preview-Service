@@ -85,13 +85,15 @@ $(document).ready(function(){
     
     // Click function that removes last button added.
 
-    $('#remove-game').on('click', function clearLastButton (){
+    $('#remove-game').on('click', function clearLastButton (event){
+        event.preventDefault();
         $('.buttonContainer').children().last().remove();
         gamesList.pop();});
 
     // Click function that clears all previously searched GIFs.
     
-    $('#remove-gifs').on('click', function clearGIFsOnly (){
+    $('#remove-gifs').on('click', function clearGIFsOnly (event){
+        event.preventDefault();
         $('.games-view').html('');
         $('.gifcontainer').removeClass('t-border');
     });
@@ -128,7 +130,8 @@ $(document).ready(function(){
     
     // Click function that sets whether or not a new search will clear searched GIFs, or prepend existing GIFs.
 
-    gifSaver.on('click', function changeSaveGif (){
+    gifSaver.on('click', function changeSaveGif (event){
+        event.preventDefault();
         if (gifSaver.hasClass('btn-success')) {
             gifSaver.removeClass('btn-success');
             gifSaver.addClass('btn-danger');
