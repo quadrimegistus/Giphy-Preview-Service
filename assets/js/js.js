@@ -157,7 +157,7 @@ $(document).ready(function(){
             $('.favgifs').hide();}
             $('.giffavoriter').text('Show My Favorite GIFs');})
   
-    // Sets default texts and displays for certain items on page load.
+    // Sets default texts and displays for items that are toggleable on page load.
 
     $('.js-change-theme').text('Switch to a Brighter Display'); $('.gifsaver').text('Set Search Results to Clear On New Search'); $('.giffavoriter').text('Show My Favorite GIFs')
     $('.loading').hide(); $('.favgifs').hide();
