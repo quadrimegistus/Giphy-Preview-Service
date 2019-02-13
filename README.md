@@ -1,6 +1,6 @@
 # H6
 
-An activity meant to demonstrate proficiency with API AJAX calls and dynamic rendering of responding information.
+An activity intended to demonstrate a proficiency with API AJAX calls and dynamic rendering of responding information.
 
 Technologies Incorporated:
 
