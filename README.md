@@ -1,5 +1,7 @@
 # H6
 
+An activity meant to demonstrate proficiency with API AJAX calls and dynamic rendering of responding information.
+
 Technologies Incorporated:
 
 HTML5
@@ -11,8 +13,6 @@ Javascript
 Bootstrap
 
 Reset CSS
-
-Heroku & CORS
 
 jQuery
 
