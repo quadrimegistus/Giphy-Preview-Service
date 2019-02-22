@@ -1,4 +1,4 @@
-# H6
+# An exercise in API AJAX Calls & Dynamic Rendering incorporating GIPHY GET returns.
 
 An activity intended to demonstrate a proficiency with API AJAX calls and dynamic rendering of responding information.
 
