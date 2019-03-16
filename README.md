@@ -28,3 +28,6 @@ Created with Visual Studio Code
 
   Extensions: Beautify, ESLint, Live Server, TODO Highlight, Open In Browser, View In Browser
   
+[jQuery's AJAX Documentation](http://api.jquery.com/jquery.ajax/)
+
+[Giphy API Documentation](https://developers.giphy.com/docs/)
